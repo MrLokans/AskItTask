@@ -1,0 +1,25 @@
+{
+  "name": "AskItTask",
+  "homepage": "https://github.com/MrLokans/AskItTask",
+  "authors": [
+    "MrLokans <trikster1911@gmail.com>"
+  ],
+  "description": "Advanced task management tool",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "tasks"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6"
+  }
+}
