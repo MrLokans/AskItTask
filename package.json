@@ -1,0 +1,33 @@
+{
+  "name": "askittask",
+  "version": "0.0.1",
+  "description": "Multifunctional task manager",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrLokans/AskItTask.git"
+  },
+  "keywords": [
+    "task",
+    "management",
+    "tasks",
+    "work",
+    "GTD",
+    "timemanagement"
+  ],
+  "author": "MrLokans",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MrLokans/AskItTask/issues"
+  },
+  "homepage": "https://github.com/MrLokans/AskItTask#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat-css": "^2.2.0",
+    "gulp-minify-css": "^1.2.3",
+    "gulp-rename": "^1.2.2"
+  }
+}
