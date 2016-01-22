@@ -1,0 +1,20 @@
+var button = document.getElementById("CreateTask");
+button.addEventListener("click", function () {
+    var taskString = document.querySelector("input").value;
+    var taskTable = document.getElementById("TaskTable");
+    var row = document.createElement("tr");
+    var firstColumn = document.createElement("td");
+    var ContentOfFirstColumn = document.createElement("input");
+    ContentOfFirstColumn.type = "checkbox";
+    firstColumn.appendChild(ContentOfFirstColumn);
+    var secondColumn = document.createElement("td");
+    secondColumn.innerHTML = taskString;
+    var thirdColumn = document.createElement("td");
+    var ContentOfThirdColumn = document.createElement("span");
+    ContentOfThirdColumn.className = "glyphicon glyphicon-star";
+    thirdColumn.appendChild(ContentOfThirdColumn);
+    row.appendChild(firstColumn);
+    row.appendChild(secondColumn);
+    row.appendChild(thirdColumn);
+    taskTable.appendChild(row);
+});
