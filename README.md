@@ -1,4 +1,4 @@
-Work of the app started.
+Work over the app started.
 
 Run ```gulp``` in command line to build front end.
 
