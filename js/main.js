@@ -13,12 +13,7 @@ $(document).ready(function(){
             var titleColumn = $('<div class="task-title col-xs-10">' + taskString + '</div>');
             
             checkedColumn.change(function(e){
-                if(checkedColumn.prop("checked")){
-                    titleColumn.addClass('deleted-text');
-                }
-                else{
-                    titleColumn.removeClass('deleted-text');
-                }
+                titleColumn.toggleClass('deleted-text');
             });
             
             var deleteColumn = $('<span class="glyphicon glyphicon-trash pull-right task-delete"></span>');
