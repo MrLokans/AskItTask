@@ -3,3 +3,7 @@ ul#task-list li.task-entry {
     min-height: 32px;
     padding-top: 5px;
 }
+
+.task-delete {
+    margin-right: 10px;
+}
