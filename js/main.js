@@ -6,7 +6,7 @@ $(document).ready(function(){
 
         var taskList = $('#task-list');
 
-        var content = $('<tr></tr>');
+        var taskEntry = $('<li class="row task-entry"></li>');
         var checkedColumn = $('<input type="checkbox" class="col-xs-1">');
         var titleColumn = $('<div class="task-title col-xs-10">' + taskString + '</div>');
         var deleteColumn = $('<span class="glyphicon glyphicon-trash"></span>');
