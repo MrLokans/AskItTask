@@ -6,24 +6,34 @@ $(document).ready(function(){
         taskString = taskInput.val();
         
         if(taskString != ''){
-        var taskList = $('#task-list');
+            var taskList = $('#task-list');
 
-        var taskEntry = $('<li class="row task-entry"></li>');
-        var checkedColumn = $('<input type="checkbox" class="col-xs-1">');
-        var titleColumn = $('<div class="task-title col-xs-10">' + taskString + '</div>');
-        var deleteColumn = $('<span class="glyphicon glyphicon-trash pull-right task-delete"></span>');
+            var taskEntry = $('<li class="row task-entry"></li>');
+            var checkedColumn = $('<input type="checkbox" class="col-xs-1">');         
+            var titleColumn = $('<div class="task-title col-xs-10">' + taskString + '</div>');
+            
+            checkedColumn.change(function(e){
+                if(checkedColumn.prop("checked")){
+                    titleColumn.addClass('deleted-text');
+                }
+                else{
+                    titleColumn.removeClass('deleted-text');
+                }
+            });
+            
+            var deleteColumn = $('<span class="glyphicon glyphicon-trash pull-right task-delete"></span>');
 
-        deleteColumn.on('click', function(e){
-            deleteColumn.parent().remove();
-        });
+            deleteColumn.on('click', function(e){
+                deleteColumn.parent().remove();
+            });
 
-        taskEntry.append(checkedColumn);
-        taskEntry.append(titleColumn);
-        taskEntry.append(deleteColumn);
+            taskEntry.append(checkedColumn);
+            taskEntry.append(titleColumn);
+            taskEntry.append(deleteColumn);
 
-        taskList.append(taskEntry);
+            taskList.append(taskEntry);
 
-        clearInput(taskInput);
+            clearInput(taskInput);
         }
         
         else{  

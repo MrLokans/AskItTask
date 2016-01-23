@@ -7,3 +7,7 @@ ul#task-list li.task-entry {
 .task-delete {
     margin-right: 10px;
 }
+
+.deleted-text {
+    text-decoration: line-through;
+}
