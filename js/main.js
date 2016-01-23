@@ -4,7 +4,7 @@ $(document).ready(function(){
     createTaskButton.on('click', function(e){
         taskString = $('.todo-input-text').val();
 
-        var taskList =$('#task-list');
+        var taskList = $('#task-list');
 
         var taskEntry = $('<li class="row task-entry"></li>');
         var checkedColumn = $('<input type="checkbox" class="col-xs-1">');
