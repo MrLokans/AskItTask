@@ -30,11 +30,11 @@ class TestTasksApp(unittest.TestCase):
         create_task_btn.click()
 
         submit_task_btn = self.browser.find_element_by_css_selector('button#createTask')
-        input_text = self.browser.find_element_by_class_name('todo-input-text')
-        input_text.send_keys('New Task 1')
+        text_input = self.browser.find_element_by_class_name('todo-input-text')
+        text_input.send_keys('New Task 1')
         submit_task_btn.click()
 
-        input_text.send_keys('New Task 2')
+        text_input.send_keys('New Task 2')
         submit_task_btn.click()
 
         list_entries = self.browser.find_elements_by_class_name('task-entry')
@@ -49,11 +49,40 @@ class TestTasksApp(unittest.TestCase):
         list_entries_before = self.browser.find_elements_by_class_name('task-entry')
         entries_count_before_submit = len(list_entries_before)
 
-        input_text = self.browser.find_element_by_class_name('todo-input-text')
-        input_text.send_keys('New Task 1' + '\n')
+        text_input = self.browser.find_element_by_class_name('todo-input-text')
+        text_input.send_keys('New Task 1' + '\n')
 
         list_entries = self.browser.find_elements_by_class_name('task-entry')
         self.assertEqual(len(list_entries), entries_count_before_submit + 1, msg="Element was not added on enter key press")
+
+    def test_delete_tasks_correctly(self):
+        self.open_main_page()
+        create_task_btn = self.browser.find_element_by_id('create-task-btn')
+        create_task_btn.click()
+
+        text_input = self.browser.find_element_by_class_name('todo-input-text')
+
+        submit_task_btn = self.browser.find_element_by_css_selector('button#createTask')
+
+        text_input.send_keys('New Task 1')
+        submit_task_btn.click()
+
+        text_input.send_keys('New Task 2')
+        submit_task_btn.click()
+
+        text_input.send_keys('New Task 3')
+        submit_task_btn.click()
+
+        text_input.send_keys('New Task 4')
+        submit_task_btn.click()
+
+        delete_third_btn = self.browser.find_elements_by_css_selector('span.glyphicon.glyphicon-trash')[2]
+        delete_third_btn.click()
+
+        list_entries = self.browser.find_elements_by_class_name('task-entry')
+        list_entries = [x.text for x in list_entries]
+        self.assertEqual(len(list_entries), 3)
+        # self.assertEqual(list_entries, ['New Task 1', 'New Task 2', 'New Task 4'])
 
 
 if __name__ == '__main__':

@@ -11,10 +11,18 @@ $(document).ready(function(){
         var titleColumn = $('<div class="task-title col-xs-10">' + taskString + '</div>');
         var deleteColumn = $('<span class="glyphicon glyphicon-trash"></span>');
 
+        deleteColumn.on('click', function(e){
+            deleteColumn.parent().remove();
+        });
+
         taskEntry.append(checkedColumn);
         taskEntry.append(titleColumn);
         taskEntry.append(deleteColumn);
 
         taskList.append(taskEntry);
     });
+
+    var deleteTask = function(taskId){
+        // it would be great to implement deletion this way;
+    };
 });
