@@ -4,7 +4,8 @@ $(document).ready(function(){
     createTaskButton.on('click', function(e){
         taskInput = $('.todo-input-text');
         taskString = taskInput.val();
-
+        
+        if(taskString != ''){
         var taskList = $('#task-list');
 
         var taskEntry = $('<li class="row task-entry"></li>');
@@ -23,6 +24,12 @@ $(document).ready(function(){
         taskList.append(taskEntry);
 
         clearInput(taskInput);
+        }
+        
+        else{  
+            $("#alertEmptyField").removeClass('hide');
+            setTimeout(function() { $("#alertEmptyField").addClass('hide'); }, 1500);
+        }
     });
 
 });
