@@ -32,11 +32,11 @@ $(document).ready(function(){
             taskList.append(taskEntry);
 
             clearInput(taskInput);
-        } else {  
+        } 
+        
+        else {  
             $("#alertEmptyField").removeClass('hide');
-            setTimeout(function() { 
-                $("#alertEmptyField").addClass('hide'); 
-            }, 1500);
+            setTimeout(function() {$("#alertEmptyField").hide(250);}, 1500);
         }
     });
 
