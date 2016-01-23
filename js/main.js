@@ -6,7 +6,6 @@ $(document).ready(function(){
 
         var taskTable =$('#taskTable');
 
-        var content = $('<tr></tr>');
         var row = $('<tr></tr>');
         var firstCol = $('<td><input type="checkbox"></td>');
         var secondCol = $('<td>' + taskString + '</td>');
