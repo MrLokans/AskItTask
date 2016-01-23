@@ -20,6 +20,10 @@ class TestTasksApp(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
+    def add_list_entry(self, text_input, submit_btn, todo_text):
+        text_input.send_keys(todo_text)
+        submit_btn.click()
+
     def test_page_has_proper_title(self):
         self.open_main_page()
         self.assertIn("AskItTask", self.browser.title)
@@ -31,11 +35,9 @@ class TestTasksApp(unittest.TestCase):
 
         submit_task_btn = self.browser.find_element_by_css_selector('button#createTask')
         text_input = self.browser.find_element_by_class_name('todo-input-text')
-        text_input.send_keys('New Task 1')
-        submit_task_btn.click()
 
-        text_input.send_keys('New Task 2')
-        submit_task_btn.click()
+        self.add_list_entry(text_input, submit_task_btn, 'New Task 1')
+        self.add_list_entry(text_input, submit_task_btn, 'New Task 2')
 
         list_entries = self.browser.find_elements_by_class_name('task-entry')
         self.assertEqual(len(list_entries), 2)
@@ -64,25 +66,35 @@ class TestTasksApp(unittest.TestCase):
 
         submit_task_btn = self.browser.find_element_by_css_selector('button#createTask')
 
-        text_input.send_keys('New Task 1')
-        submit_task_btn.click()
-
-        text_input.send_keys('New Task 2')
-        submit_task_btn.click()
-
-        text_input.send_keys('New Task 3')
-        submit_task_btn.click()
-
-        text_input.send_keys('New Task 4')
-        submit_task_btn.click()
+        self.add_list_entry(text_input, submit_task_btn, 'New Task 1')
+        self.add_list_entry(text_input, submit_task_btn, 'New Task 2')
+        self.add_list_entry(text_input, submit_task_btn, 'New Task 3')
+        self.add_list_entry(text_input, submit_task_btn, 'New Task 4')
 
         delete_third_btn = self.browser.find_elements_by_css_selector('span.glyphicon.glyphicon-trash')[2]
         delete_third_btn.click()
 
         list_entries = self.browser.find_elements_by_class_name('task-entry')
         list_entries = [x.text for x in list_entries]
-        self.assertEqual(len(list_entries), 3)
+        self.assertEqual(len(list_entries), 3, msg="Element was not deleted.")
         # self.assertEqual(list_entries, ['New Task 1', 'New Task 2', 'New Task 4'])
+
+    def test_empty_task_not_submited(self):
+        self.open_main_page()
+        create_task_btn = self.browser.find_element_by_id('create-task-btn')
+        create_task_btn.click()
+
+        submit_task_btn = self.browser.find_element_by_css_selector('button#createTask')
+
+        list_entries_before = self.browser.find_elements_by_class_name('task-entry')
+        entries_count_before_submit = len(list_entries_before)
+
+        text_input = self.browser.find_element_by_class_name('todo-input-text')
+
+        self.add_list_entry(text_input, submit_task_btn, 'New Task 1')
+
+        list_entries = self.browser.find_elements_by_class_name('task-entry')
+        self.assertEqual(len(list_entries), entries_count_before_submit, msg="Empty element added to the list.")
 
 
 if __name__ == '__main__':
