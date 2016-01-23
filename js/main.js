@@ -2,7 +2,8 @@ $(document).ready(function(){
     var createTaskButton = $('#createTask');
 
     createTaskButton.on('click', function(e){
-        taskString = $('.todo-input-text').val();
+        taskInput = $('.todo-input-text');
+        taskString = taskInput.val();
 
         var taskList = $('#task-list');
 
@@ -20,9 +21,16 @@ $(document).ready(function(){
         taskEntry.append(deleteColumn);
 
         taskList.append(taskEntry);
+
+        clearInput(taskInput);
     });
 
-    var deleteTask = function(taskId){
-        // it would be great to implement deletion this way;
-    };
 });
+
+var clearInput = function(input){
+    input.val('');
+};
+
+var deleteTask = function(taskId){
+    // it would be great to implement deletion this way;
+};
