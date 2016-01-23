@@ -91,9 +91,10 @@ class TestTasksApp(unittest.TestCase):
 
         text_input = self.browser.find_element_by_class_name('todo-input-text')
 
-        self.add_list_entry(text_input, submit_task_btn, 'New Task 1')
+        self.add_list_entry(text_input, submit_task_btn, '')
 
         list_entries = self.browser.find_elements_by_class_name('task-entry')
+
         self.assertEqual(len(list_entries), entries_count_before_submit, msg="Empty element added to the list.")
 
 
