@@ -19,7 +19,10 @@ $(document).ready(function(){
             var deleteColumn = $('<span class="glyphicon glyphicon-trash pull-right task-delete"></span>');
 
             deleteColumn.on('click', function(e){
-                deleteColumn.parent().remove();
+                deleteTarget = deleteColumn.parent();
+                deleteTarget.hide(250, function(){
+                    deleteTarget.remove();
+                });
             });
 
             taskEntry.append(checkedColumn);
