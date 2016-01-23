@@ -5,40 +5,44 @@
     <title>AskItTask</title>
     <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
     <link rel="stylesheet" href="css/sticky-footer-navbar.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
- <div class="container">
-     <h2>Hello world!</h2>
-  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal">Open modal</button>
-  </div>
-<div class="modal fade" id="modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="modal">AskItTask</h4>
-      </div>
-      <div class="modal-body">
-               <form>
-          <div class="form-group">
-            <label for="message-text" style="font-size:18px" class="control-label">Content of the task:</label>
-       <div class="input-group ">
-       <input type="text" class="form-control todo-input-text" placeholder="What should be done?" autofocus required/>
-       <span class="input-group-btn">
-            <button class="btn btn-default" id="createTask" type="button">Add new task</button>
-       </span>
-       </div>
-          </div>
-        </form>
-        <table class="table" >
-            <tbody id="taskTable">
-            </tbody>
-        </table>
-      </div>
+
+    <div class="container">
+        <h2>Hello world!</h2>
     </div>
-  </div>
-</div>
-  <footer class="footer">
+
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createTaskModal">Create Task</button>
+
+    <div class="modal fade" id="createTaskModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modal">AskItTask</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="message-text" style="font-size:18px" class="control-label">Content of the task:</label>
+                            <div class="input-group ">
+                                <input type="text" class="form-control todo-input-text" placeholder="What should be done?" autofocus required/>
+                                <span class="input-group-btn">
+       <button class="btn btn-default" id="createTask" type="button">Add new task</button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                    <ul id="task-list" class="list-unstyled">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer block -->
+    <footer class="footer">
         <div class="container">
             <p>Developers:</p>
             <a href="https://github.com/MrLokans">MrLokans</a>
@@ -47,6 +51,9 @@
             <a href="https://github.com/Fuckingnullpointerexception">Fuckingnullpointerexception</a>
         </div>
     </footer>
+    <!-- Footer block -->
+
+
     <script src="js/vendor/jquery.min.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
     <script src="js/main.js"></script>

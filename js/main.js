@@ -4,17 +4,17 @@ $(document).ready(function(){
     createTaskButton.on('click', function(e){
         taskString = $('.todo-input-text').val();
 
-        var taskTable =$('#taskTable');
+        var taskList = $('#task-list');
 
-        var row = $('<tr></tr>');
-        var firstCol = $('<td><input type="checkbox"></td>');
-        var secondCol = $('<td>' + taskString + '</td>');
-        var thirdCol = $('<td><span class="glyphicon glyphicon-star"></span></td>');
+        var content = $('<tr></tr>');
+        var checkedColumn = $('<input type="checkbox" class="col-xs-1">');
+        var titleColumn = $('<div class="task-title col-xs-10">' + taskString + '</div>');
+        var deleteColumn = $('<span class="glyphicon glyphicon-trash"></span>');
 
-        row.append(firstCol);
-        row.append(secondCol);
-        row.append(thirdCol);
+        taskEntry.append(checkedColumn);
+        taskEntry.append(titleColumn);
+        taskEntry.append(deleteColumn);
 
-        taskTable.append(row);
+        taskList.append(taskEntry);
     });
 });
