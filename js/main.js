@@ -5,7 +5,7 @@ $(document).ready(function(){
         taskInput = $('.todo-input-text');
         taskString = taskInput.val();
         
-        if(taskString != ''){
+        if(taskString !== ''){
             var taskList = $('#task-list');
 
             var taskEntry = $('<li class="row task-entry"></li>');
@@ -29,11 +29,11 @@ $(document).ready(function(){
             taskList.append(taskEntry);
 
             clearInput(taskInput);
-        }
-        
-        else{  
+        } else {  
             $("#alertEmptyField").removeClass('hide');
-            setTimeout(function() { $("#alertEmptyField").addClass('hide'); }, 1500);
+            setTimeout(function() { 
+                $("#alertEmptyField").addClass('hide'); 
+            }, 1500);
         }
     });
 
