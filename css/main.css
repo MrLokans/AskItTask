@@ -1,5 +1,7 @@
 ul#task-list li.task-entry {
+    margin-top: 1px;
     border: 1px solid #DCDCDC;
+    border-radius: 3px;
     min-height: 32px;
     padding-top: 5px;
 }
