@@ -31,8 +31,6 @@ class TestTasksApp(unittest.TestCase):
 
     def test_tasks_correctly_submitted(self):
         self.open_main_page()
-        create_task_btn = self.browser.find_element_by_id('create-task-btn')
-        create_task_btn.click()
 
         submit_task_btn = self.browser.find_element_by_css_selector('button#createTask')
         text_input = self.browser.find_element_by_class_name('todo-input-text')
@@ -46,8 +44,6 @@ class TestTasksApp(unittest.TestCase):
 
     def test_tasks_submited_on_ENTER_key(self):
         self.open_main_page()
-        create_task_btn = self.browser.find_element_by_id('create-task-btn')
-        create_task_btn.click()
 
         list_entries_before = self.browser.find_elements_by_class_name('task-entry')
         entries_count_before_submit = len(list_entries_before)
@@ -60,8 +56,6 @@ class TestTasksApp(unittest.TestCase):
 
     def test_delete_tasks_correctly(self):
         self.open_main_page()
-        create_task_btn = self.browser.find_element_by_id('create-task-btn')
-        create_task_btn.click()
 
         text_input = self.browser.find_element_by_class_name('todo-input-text')
 
@@ -85,8 +79,6 @@ class TestTasksApp(unittest.TestCase):
 
     def test_empty_task_not_submited(self):
         self.open_main_page()
-        create_task_btn = self.browser.find_element_by_id('create-task-btn')
-        create_task_btn.click()
 
         submit_task_btn = self.browser.find_element_by_css_selector('button#createTask')
 

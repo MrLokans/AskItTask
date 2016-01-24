@@ -13,38 +13,28 @@
         <h2>Hello world!</h2>
     </div>
 
-    <button type="button" id="create-task-btn" class="btn btn-default" data-toggle="modal" data-target="#createTaskModal">Create Task</button>
-
-    <div class="modal fade" id="createTaskModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="modal">AskItTask</h4>
-                </div>
-                <div class="modal-body">
-                    <!-- onsubmit hack is used to prevent form being closed on ENTER key press -->
-                    <form onsubmit="return false">
-                        <div class="form-group">
-                            <label for="message-text" style="font-size:18px" class="control-label">Content of the task:</label>
-                            <div class="input-group ">
-                                <input type="text" class="form-control todo-input-text" placeholder="What should be done?" autofocus/>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" id="createTask" type="button">Add new task</button>
-                                </span>
-                            </div>
-                        </div>
-                    </form>
-                        <div id="alertEmptyField" class="alert alert-warning hide fade in">
-                                 To-do content can not be empty
-                        </div>
-                    <ul id="task-list" class="list-unstyled">
-                    </ul>
-                </div>
+    <div class="row">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-8">
+            <label for="message-text" style="font-size:18px" class="control-label">Content of the task:</label>
+            <div class="input-group ">
+                <input type="text" class="form-control todo-input-text" placeholder="What should be done?" autofocus/>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" id="createTask" type="button">Add new task</button>
+                </span>
+            </div>    
+         
+            <div id="alertEmptyField" class="alert alert-warning hide fade in">
+                     To-do content can not be empty
             </div>
+            <ul id="task-list" class="list-unstyled">
+            </ul>             
         </div>
+
+        <div class="class-xs-2"></div>
+         
     </div>
-    
+
     <!-- Footer block -->
     <footer class="footer">
         <div class="container">
