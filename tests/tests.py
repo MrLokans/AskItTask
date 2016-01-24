@@ -1,4 +1,5 @@
 import os
+import time
 
 import unittest
 
@@ -73,6 +74,9 @@ class TestTasksApp(unittest.TestCase):
 
         delete_third_btn = self.browser.find_elements_by_css_selector('span.glyphicon.glyphicon-trash')[2]
         delete_third_btn.click()
+
+        # Task dissapear with animation, so we have to wait a bit
+        time.sleep(1)
 
         list_entries = self.browser.find_elements_by_class_name('task-entry')
         list_entries = [x.text for x in list_entries]
