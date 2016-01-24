@@ -13,3 +13,7 @@ ul#task-list li.task-entry {
 .deleted-text {
     text-decoration: line-through;
 }
+
+.input-group {
+    margin-bottom: 20px;
+}
