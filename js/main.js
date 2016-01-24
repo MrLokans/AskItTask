@@ -36,7 +36,8 @@ $(document).ready(function(){
         
         else {  
             $("#alertEmptyField").removeClass('hide');
-            setTimeout(function() {$("#alertEmptyField").hide(250);}, 1500);
+            setTimeout(function(){$("#alertEmptyField").hide(250);}, 1500);
+            $("#alertEmptyField").show(0);                
         }
     });
 
