@@ -1,7 +1,7 @@
 Work over the app started.
 
 
-Run ```gulp``` in command line to build front end.
+Run ```bower install``` and  ```gulp``` in command line to download and compile all front end dependencies.
 
 
 To run tests you will need to install Python 2.7 and Chrome web browser. After installing python run ```pip install -r requirements.txt``` 
