@@ -1,11 +1,15 @@
-Work over the app started.
+# General description
+AskItTask is an open-source task-management tool built with Django, AngularJS and good intentions.
 
 
+## Development setup
 Run ```bower install``` and  ```gulp``` in command line to download and compile all front end dependencies.
 
+## Testing
+To run test suite make sure you have Chrome webbrowser installed and run following commands:
 
-To run tests you will need to install Python 2.7 and Chrome web browser. After installing python run ```pip install -r requirements.txt``` 
-next to **requirements.txt** to install all required libraries.
-
-
-To actually run tests go to **tests** dir and run ```python tests.py```
+```
+pip install -r python_deps/test_requirements.txt
+cd tests
+python tests.py
+```
