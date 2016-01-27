@@ -17,3 +17,7 @@ ul#task-list li.task-entry {
 .input-group {
     margin-bottom: 20px;
 }
+
+.list-container {
+    margin-bottom: 60px;
+}
