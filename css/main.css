@@ -19,5 +19,14 @@ ul#task-list li.task-entry {
 }
 
 .list-container {
-    margin-bottom: 60px;
+    margin-bottom: 60px;    
+}
+
+.list-of-lists {
+	padding-right: 0px;
+	border-right: 1px solid #DCDCDC;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	overflow-y: auto;
 }
