@@ -18,8 +18,16 @@ ul#task-list li.task-entry {
     margin-bottom: 20px;
 }
 
+#createTask {
+   height: 34px;
+}
+
 .list-container { 
     margin: 0px 20px 60px 270px;
+}
+
+.control-label {
+    font-size: 20px;
 }
 
 .list-menu {
@@ -30,13 +38,14 @@ ul#task-list li.task-entry {
     width: 250px;
 }
 
-.list-add-button {
+#list-add-button {
     position: absolute;	
     bottom: 0;
-    width: inherit;
+    width: 251px;
     border-style: none;
     border: 1px solid #DCDCDC; 
-    border-radius: 0px;    
+    border-radius: 0px; 
+    margin-left: -1px;
 }
 
 .multiply-list-container {
