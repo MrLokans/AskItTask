@@ -22,10 +22,23 @@ ul#task-list li.task-entry {
     margin: 0px 20px 60px 270px;
 }
 
-.list-of-lists {
+.list-menu {
+	position: relative;
+	padding-bottom: 34px; /*to prevent overlapping of multipty-list-container by the list-add-button*/
 	border-right: 1px solid #DCDCDC;
 	position: fixed;
-	overflow-y: auto;
     height: 100%;
     width: 250px;
+}
+
+.list-add-button {
+	width: inherit;
+    position: absolute;	
+    bottom: 0;
+}
+
+.multiply-list-container {
+	height: 100%;
+    width: inherit;
+    overflow-y: auto;
 }
