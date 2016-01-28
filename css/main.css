@@ -18,15 +18,14 @@ ul#task-list li.task-entry {
     margin-bottom: 20px;
 }
 
-.list-container {
-    margin-bottom: 60px;    
+.list-container { 
+    margin: 0px 20px 60px 320px;
 }
 
 .list-of-lists {
-	padding-right: 0px;
 	border-right: 1px solid #DCDCDC;
 	position: fixed;
-	top: 0;
-	bottom: 0;
 	overflow-y: auto;
+    height: 100%;
+    width: 300px;
 }
