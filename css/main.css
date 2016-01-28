@@ -18,7 +18,7 @@ ul#task-list li.task-entry {
     margin-bottom: 20px;
 }
 
-#createTask {
+#create-task-btn {
    height: 34px;
 }
 
@@ -48,7 +48,7 @@ ul#task-list li.task-entry {
     margin-left: -1px;
 }
 
-.multiply-list-container {
+.multiple-list-container {
     height: 100%;
     width: inherit;
     overflow-y: auto;

@@ -32,7 +32,7 @@ class TestTasksApp(unittest.TestCase):
     def test_tasks_correctly_submitted(self):
         self.open_main_page()
 
-        submit_task_btn = self.browser.find_element_by_css_selector('button#createTask')
+        submit_task_btn = self.browser.find_element_by_css_selector('button#create-task-btn')
         text_input = self.browser.find_element_by_class_name('todo-input-text')
 
         self.add_list_entry(text_input, submit_task_btn, 'New Task 1')
@@ -59,7 +59,7 @@ class TestTasksApp(unittest.TestCase):
 
         text_input = self.browser.find_element_by_class_name('todo-input-text')
 
-        submit_task_btn = self.browser.find_element_by_css_selector('button#createTask')
+        submit_task_btn = self.browser.find_element_by_css_selector('button#create-task-btn')
 
         self.add_list_entry(text_input, submit_task_btn, 'New Task 1')
         self.add_list_entry(text_input, submit_task_btn, 'New Task 2')
@@ -80,7 +80,7 @@ class TestTasksApp(unittest.TestCase):
     def test_empty_task_not_submited(self):
         self.open_main_page()
 
-        submit_task_btn = self.browser.find_element_by_css_selector('button#createTask')
+        submit_task_btn = self.browser.find_element_by_css_selector('button#create-task-btn')
 
         list_entries_before = self.browser.find_elements_by_class_name('task-entry')
         entries_count_before_submit = len(list_entries_before)
