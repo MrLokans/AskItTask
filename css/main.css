@@ -19,7 +19,7 @@ ul#task-list li.task-entry {
 }
 
 .list-container { 
-    margin: 0px 20px 60px 320px;
+    margin: 0px 20px 60px 270px;
 }
 
 .list-of-lists {
@@ -27,5 +27,5 @@ ul#task-list li.task-entry {
 	position: fixed;
 	overflow-y: auto;
     height: 100%;
-    width: 300px;
+    width: 250px;
 }
