@@ -53,7 +53,7 @@ var addToDo = function(){
         // show method is called BEFORE the previous .hide() method. 
         $("#alertEmptyField").show(0);                 
     }
-}
+};
 
 var clearInput = function(input){
     input.val('');

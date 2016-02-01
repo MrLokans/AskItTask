@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
-<body>
+<body ng-app="todoapp">
     <div id="content">
         <div class="list-menu">
             <div class="input-group" id="search-group">
@@ -34,18 +34,23 @@
             </ul>
             <button id="list-add-button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Create list</button>
         </div>
-        <div class="list-container">        
+        <div class="list-container" ng-controller="TodoListController as todo">        
             <label for="message-text" class="control-label">Content of the task:</label>
             <div class="input-group">
-                <input type="text" class="form-control todo-input-text" placeholder="What should be done?" autofocus/>
+                <input type="text" class="form-control todo-input-text" placeholder="What should be done?" autofocus ng-model="todo.currentItemTitle" />
                 <span class="input-group-btn">
-                    <button class="btn btn-default" id="create-task-btn" type="button">Add new task</button>
+                    <button class="btn btn-default" id="create-task-btn" type="button" ng-click="todo.addTodo()">Add new task</button>
                 </span>
             </div>         
             <div id="alertEmptyField" class="alert alert-warning hide fade in">
                      To-do content can not be empty
             </div>
-            <ul id="task-list" class="list-unstyled">
+            <ul id="task-list" class="list-unstyled"  ng-repeat="item in todo.todos">
+                <li  class="task-entry">
+                    <input type="checkbox" class="col-xs-2 col-md-1 col-sm-1">
+                    <div class="task-title col-xs-8 col-md-10 col-sm-10">{{ item.todo_title }}</div>
+                    <span class="glyphicon glyphicon-trash pull-right task-delete"></span>
+                </li>
             </ul>                    
         </div> 
     </div>    
@@ -53,7 +58,8 @@
     <script src="js/vendor/jquery.min.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
     <script src="js/vendor/angular.min.js"></script>
-    <script src="js/list_samples.js"></script>
-    <script src="js/main.js"></script>
+    <!--<script src="js/main.js"></script>-->
+    <script src="js/app.js"></script>
+    <script src="js/controllers/main.controller.js"></script>
 </body>
 </html>
