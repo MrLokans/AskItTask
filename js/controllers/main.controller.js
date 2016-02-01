@@ -4,14 +4,19 @@ angular.module('todoapp', [])
 
         self.currentItemTitle = "";
 
-        self.todos = $http.get('js/list_samples.json')
+        self.todos = [];
+        $http.get('js/list_samples.json')
             .success(function(data){
-                self.todos = data[0].todos;
+                self.todos = data.lists[0].todos;
             });
 
         // implement item removal
         self.removeTodo = function(todoId){
-
+            self.todos.forEach(function(item, index, arr){
+                if(arr[index].todo_id === todoId){
+                    self.todos.splice(index, 1);
+                }
+            });
         };
 
         self.addTodo = function(){
@@ -21,6 +26,20 @@ angular.module('todoapp', [])
                 todo_id: 1,
                 todo_title: self.currentItemTitle
             });
-            
+            self.currentItemTitle = "";
+
         };
+
+    }])
+
+    .controller('MenuListController', ["$http", function($http){
+        menu = this;
+
+        menu.lists = [];
+
+        $http.get('js/list_samples.json')
+            .success(function(data){
+                menu.lists = data.lists;
+            });
+
 }]);
