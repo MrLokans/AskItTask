@@ -53,3 +53,13 @@ ul#task-list li.task-entry {
     width: inherit;
     overflow-y: auto;
 }
+
+#search-group {	
+	width: 251px;
+	margin-bottom: 0px;
+}
+
+.search-style {
+	border-radius: 0px;
+	height: inherit;
+}
