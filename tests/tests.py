@@ -21,6 +21,9 @@ class TestTasksApp(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
+    def get_create_task_btn(self):
+        return self.browser.find_element_by_css_selector('button#create-task-btn')
+
     def add_list_entry(self, text_input, submit_btn, todo_text):
         text_input.send_keys(todo_text)
         submit_btn.click()
@@ -32,7 +35,7 @@ class TestTasksApp(unittest.TestCase):
     def test_tasks_correctly_submitted(self):
         self.open_main_page()
 
-        submit_task_btn = self.browser.find_element_by_css_selector('button#createTask')
+        submit_task_btn = self.get_create_task_btn()
         text_input = self.browser.find_element_by_class_name('todo-input-text')
 
         self.add_list_entry(text_input, submit_task_btn, 'New Task 1')
@@ -59,7 +62,7 @@ class TestTasksApp(unittest.TestCase):
 
         text_input = self.browser.find_element_by_class_name('todo-input-text')
 
-        submit_task_btn = self.browser.find_element_by_css_selector('button#createTask')
+        submit_task_btn = self.browser.find_element_by_css_selector('button#create-task-btn')
 
         self.add_list_entry(text_input, submit_task_btn, 'New Task 1')
         self.add_list_entry(text_input, submit_task_btn, 'New Task 2')
@@ -80,7 +83,7 @@ class TestTasksApp(unittest.TestCase):
     def test_empty_task_not_submited(self):
         self.open_main_page()
 
-        submit_task_btn = self.browser.find_element_by_css_selector('button#createTask')
+        submit_task_btn = self.get_create_task_btn()
 
         list_entries_before = self.browser.find_elements_by_class_name('task-entry')
         entries_count_before_submit = len(list_entries_before)
@@ -93,6 +96,24 @@ class TestTasksApp(unittest.TestCase):
 
         self.assertEqual(len(list_entries), entries_count_before_submit, msg="Empty element added to the list.")
 
+    def test_submitting_empty_TODO_by_clicking_button_shows_error(self):
+        self.open_main_page()
+
+        submit_task_btn = self.get_create_task_btn()
+        text_input = self.browser.find_element_by_class_name('todo-input-text')
+        self.add_list_entry(text_input, submit_task_btn, '')
+
+        alert_div = self.browser.find_element_by_id('alertEmptyField')
+        self.assertIn("To-do content can not be empty", alert_div.text)
+
+    def test_submitting_empty_TODO_by_pressing_ENTER_button_shows_error(self):
+        self.open_main_page()
+
+        text_input = self.browser.find_element_by_class_name('todo-input-text')
+        text_input.send_keys('\n')
+
+        alert_div = self.browser.find_element_by_id('alertEmptyField')
+        self.assertIn("To-do content can not be empty", alert_div.text)
 
 if __name__ == '__main__':
     unittest.main()

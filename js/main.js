@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    var createTaskButton = $('#createTask');
+    var createTaskButton = $('#create-task-btn');
     var inputText = $('input.todo-input-text');
 
     inputText.on('keydown', function(event){

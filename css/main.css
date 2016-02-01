@@ -18,6 +18,47 @@ ul#task-list li.task-entry {
     margin-bottom: 20px;
 }
 
-.list-container {
-    margin-bottom: 60px;
+#create-task-btn {
+   height: 34px;
+}
+
+.list-container { 
+    margin: 0px 20px 60px 270px;
+}
+
+.control-label {
+    font-size: 20px;
+}
+
+.list-menu {
+    position: fixed;
+    padding-bottom: 67px; /*to prevent overlapping of multipty-list-container by the list-add-button*/
+    border-right: 1px solid #DCDCDC;	
+    height: 100%;
+    width: 250px;
+}
+
+#search-group {	
+	width: 251px;
+	margin-bottom: 0px;
+}
+
+.search-style {
+	border-radius: 0px;
+	height: inherit;
+}
+
+.multiple-list-container {
+    height: 100%;
+    width: inherit;
+    overflow-y: auto;
+}
+
+#list-add-button {
+    position: absolute;	
+    bottom: 0;
+    width: 251px;
+    border: 1px solid #DCDCDC; 
+    border-radius: 0px; 
+    margin-left: -1px;
 }
