@@ -3,11 +3,13 @@ angular.module('todoapp', [])
         self = this;
 
         self.currentItemTitle = "";
+        self.maxTodoId = 0;
 
         self.todos = [];
         $http.get('js/list_samples.json')
             .success(function(data){
                 self.todos = data.lists[0].todos;
+                self.maxTodoId = self.findMaximumTodoId();
             });
 
         // implement item removal
@@ -17,16 +19,28 @@ angular.module('todoapp', [])
                     self.todos.splice(index, 1);
                 }
             });
+            self.maxTodoId = self.findMaximumTodoId();
         };
 
         self.addTodo = function(){
-            // How do we deal with IDs?
-            console.log("Calling");
             self.todos.push({
-                todo_id: 1,
+                todo_id: ++self.maxTodoId,
                 todo_title: self.currentItemTitle
             });
             self.currentItemTitle = "";
+        };
+
+        self.findMaximumTodoId = function(){
+            if (self.todos.length === 0){
+                return 0;
+            }
+            maxValue = self.todos[0].todo_id;
+            for(var i=0; i<self.todos.length;++i){
+                if (self.todos[i].todo_id > maxValue){
+                    maxValue = self.todos[i].todo_id;
+                }
+            }
+            return maxValue;
 
         };
 
