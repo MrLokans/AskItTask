@@ -38,22 +38,6 @@ ul#task-list li.task-entry {
     width: 250px;
 }
 
-#list-add-button {
-    position: absolute;	
-    bottom: 0;
-    width: 251px;
-    border-style: none;
-    border: 1px solid #DCDCDC; 
-    border-radius: 0px; 
-    margin-left: -1px;
-}
-
-.multiple-list-container {
-    height: 100%;
-    width: inherit;
-    overflow-y: auto;
-}
-
 #search-group {	
 	width: 251px;
 	margin-bottom: 0px;
@@ -62,4 +46,19 @@ ul#task-list li.task-entry {
 .search-style {
 	border-radius: 0px;
 	height: inherit;
+}
+
+.multiple-list-container {
+    height: 100%;
+    width: inherit;
+    overflow-y: auto;
+}
+
+#list-add-button {
+    position: absolute;	
+    bottom: 0;
+    width: 251px;
+    border: 1px solid #DCDCDC; 
+    border-radius: 0px; 
+    margin-left: -1px;
 }
