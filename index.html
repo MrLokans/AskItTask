@@ -23,7 +23,7 @@
         <div class="list-container" ng-controller="TodoListController as todo">        
             <label for="message-text" class="control-label">Content of the task:</label>
             <div class="input-group">
-                <input type="text" class="form-control todo-input-text" placeholder="What should be done?" autofocus ng-model="todo.currentItemTitle" />
+                <input type="text" class="form-control todo-input-text" placeholder="What should be done?" autofocus ng-model="todo.currentItemTitle" ng-keypress="$event.keyCode === 13 && todo.addTodo()"/>
                 <span class="input-group-btn">
                     <button class="btn btn-default" id="create-task-btn" type="button" ng-click="todo.addTodo()">Add new task</button>
                 </span>
