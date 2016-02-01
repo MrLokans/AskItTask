@@ -32,7 +32,7 @@ ul#task-list li.task-entry {
 
 .list-menu {
     position: fixed;
-    padding-bottom: 34px; /*to prevent overlapping of multipty-list-container by the list-add-button*/
+    padding-bottom: 67px; /*to prevent overlapping of multipty-list-container by the list-add-button*/
     border-right: 1px solid #DCDCDC;	
     height: 100%;
     width: 250px;
