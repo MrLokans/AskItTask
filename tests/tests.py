@@ -1,5 +1,6 @@
 import os
 import time
+import subprocess
 
 import unittest
 
@@ -7,19 +8,28 @@ from selenium import webdriver
 
 BASE_PROJECT_DIR = os.path.abspath(os.path.normpath('..'))
 
+FNULL = open(os.devnull, "w")
+
 
 class TestTasksApp(unittest.TestCase):
 
     def setUp(self):
         self.main_page = os.path.join(BASE_PROJECT_DIR, "index.html")
+
+        self.server_args = ["python2", "-m", "SimpleHTTPServer"]
+
         self.browser = webdriver.Chrome()
-        self.browser.implicitly_wait(1)
+
+        self.server_process = subprocess.Popen(self.server_args, cwd=BASE_PROJECT_DIR, stdout=FNULL, stderr=FNULL)
 
     def open_main_page(self):
-        self.browser.get('file://' + self.main_page)
+        # self.browser.get('file://' + self.main_page)
+        self.browser.get('localhost:8000')
+        self.browser.implicitly_wait(1)
 
     def tearDown(self):
         self.browser.quit()
+        self.server_process.terminate()
 
     def get_create_task_btn(self):
         return self.browser.find_element_by_css_selector('button#create-task-btn')
