@@ -8,6 +8,7 @@ from selenium import webdriver
 
 BASE_PROJECT_DIR = os.path.abspath(os.path.normpath('..'))
 PYTHON_BINARY_NAME = "python" if os.name == "nt" else "python2"
+TEST_SERVER_PORT = "7149"
 FNULL = open(os.devnull, "w")
 
 
@@ -16,7 +17,7 @@ class TestTasksApp(unittest.TestCase):
     def setUp(self):
         self.main_page = os.path.join(BASE_PROJECT_DIR, "index.html")
 
-        self.server_args = [PYTHON_BINARY_NAME, "-m", "SimpleHTTPServer"]
+        self.server_args = [PYTHON_BINARY_NAME, "-m", "SimpleHTTPServer", TEST_SERVER_PORT]
 
         self.browser = webdriver.Chrome()
 
@@ -24,7 +25,7 @@ class TestTasksApp(unittest.TestCase):
 
     def open_main_page(self):
         # self.browser.get('file://' + self.main_page)
-        self.browser.get('localhost:8000')
+        self.browser.get('localhost:{port}'.format(port=TEST_SERVER_PORT))
         self.browser.implicitly_wait(2)
 
     def tearDown(self):
