@@ -7,7 +7,7 @@ import unittest
 from selenium import webdriver
 
 BASE_PROJECT_DIR = os.path.abspath(os.path.normpath('..'))
-
+PYTHON_BINARY_NAME = "python" if os.name == "nt" else "python2"
 FNULL = open(os.devnull, "w")
 
 
@@ -16,7 +16,7 @@ class TestTasksApp(unittest.TestCase):
     def setUp(self):
         self.main_page = os.path.join(BASE_PROJECT_DIR, "index.html")
 
-        self.server_args = ["python2", "-m", "SimpleHTTPServer"]
+        self.server_args = [PYTHON_BINARY_NAME, "-m", "SimpleHTTPServer"]
 
         self.browser = webdriver.Chrome()
 
@@ -25,7 +25,7 @@ class TestTasksApp(unittest.TestCase):
     def open_main_page(self):
         # self.browser.get('file://' + self.main_page)
         self.browser.get('localhost:8000')
-        self.browser.implicitly_wait(1)
+        self.browser.implicitly_wait(2)
 
     def tearDown(self):
         self.browser.quit()
@@ -37,6 +37,10 @@ class TestTasksApp(unittest.TestCase):
     def add_list_entry(self, text_input, submit_btn, todo_text):
         text_input.send_keys(todo_text)
         submit_btn.click()
+
+    def get_list_entry_count(self):
+        list_entries = self.browser.find_elements_by_class_name('task-entry')
+        return len(list_entries)
 
     def test_page_has_proper_title(self):
         self.open_main_page()
@@ -58,14 +62,13 @@ class TestTasksApp(unittest.TestCase):
     def test_tasks_submited_on_ENTER_key(self):
         self.open_main_page()
 
-        list_entries_before = self.browser.find_elements_by_class_name('task-entry')
-        entries_count_before_submit = len(list_entries_before)
+        entries_number_before_submit = self.get_list_entry_count()
 
         text_input = self.browser.find_element_by_class_name('todo-input-text')
         text_input.send_keys('New Task 1' + '\n')
 
-        list_entries = self.browser.find_elements_by_class_name('task-entry')
-        self.assertEqual(len(list_entries), entries_count_before_submit + 1, msg="Element was not added on enter key press")
+        entries_number_after_submit = self.get_list_entry_count()
+        self.assertEqual(entries_number_after_submit, entries_number_before_submit + 1, msg="Element was not added on enter key press")
 
     def test_delete_tasks_correctly(self):
         self.open_main_page()
@@ -74,21 +77,26 @@ class TestTasksApp(unittest.TestCase):
 
         submit_task_btn = self.browser.find_element_by_css_selector('button#create-task-btn')
 
+        entries_number_before_submit = self.get_list_entry_count()
+
         self.add_list_entry(text_input, submit_task_btn, 'New Task 1')
         self.add_list_entry(text_input, submit_task_btn, 'New Task 2')
         self.add_list_entry(text_input, submit_task_btn, 'New Task 3')
         self.add_list_entry(text_input, submit_task_btn, 'New Task 4')
 
-        delete_third_btn = self.browser.find_elements_by_css_selector('span.glyphicon.glyphicon-trash')[2]
+        delete_third_btn = self.browser.find_elements_by_css_selector('span.glyphicon.glyphicon-trash')[entries_number_before_submit + 2]
         delete_third_btn.click()
 
         # Task dissapear with animation, so we have to wait a bit
         time.sleep(1)
 
         list_entries = self.browser.find_elements_by_class_name('task-entry')
-        list_entries = [x.text for x in list_entries]
-        self.assertEqual(len(list_entries), 3, msg="Element was not deleted.")
-        # self.assertEqual(list_entries, ['New Task 1', 'New Task 2', 'New Task 4'])
+        new_todos_texts = [x.text for x in list_entries]
+
+        entries_number_after_submit = self.get_list_entry_count()
+
+        self.assertEqual(entries_number_after_submit, entries_number_before_submit + 3, msg="Element was not deleted.")
+        self.assertEqual(new_todos_texts[entries_number_before_submit:], ['New Task 1', 'New Task 2', 'New Task 4'])
 
     def test_empty_task_not_submited(self):
         self.open_main_page()
