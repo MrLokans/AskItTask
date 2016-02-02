@@ -20,14 +20,17 @@
             </ul>
             <button id="list-add-button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Create list</button>
         </div>
+
+
         <div class="list-container" ng-controller="TodoListController as todo">        
             <label for="message-text" class="control-label">Content of the task:</label>
             <div class="input-group">
-                <input type="text" class="form-control todo-input-text" placeholder="What should be done?" autofocus ng-model="todo.currentItemTitle" ng-keypress="$event.keyCode === 13 && todo.addTodo()"/>
+                <input type="text" class="form-control todo-input-text" placeholder="What should be done?" autofocus ng-model="todo.currentItemTitle" ng-keypress="$event.keyCode === 13 && todo.addTodo()" required/>
                 <span class="input-group-btn">
-                    <button class="btn btn-default" id="create-task-btn" type="button" ng-click="todo.addTodo()">Add new task</button>
+                    <button class="btn btn-default" id="create-task-btn" type="button" ng-click="todo.addTodo(); submitted=true" ng-keyup="submitted=false">Add new task</button>
                 </span>
-            </div>         
+            </div> 
+
             <div id="alertEmptyField" class="alert alert-warning hide fade in">
                      To-do content can not be empty
             </div>
@@ -39,11 +42,13 @@
                 </li>
             </ul>                    
         </div> 
+
     </div>    
 
     <script src="js/vendor/jquery.min.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
     <script src="js/vendor/angular.min.js"></script>
+    <script src="js/vendor/angular-messages.min.js"></script>
     <!--<script src="js/main.js"></script>-->
     <script src="js/app.js"></script>
     <script src="js/controllers/main.controller.js"></script>

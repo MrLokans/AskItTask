@@ -1,1 +1,1 @@
-angular.module('todoapp', []);
+angular.module('todoapp', ['ngMessages']);

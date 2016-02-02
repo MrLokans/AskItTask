@@ -23,6 +23,9 @@ angular.module('todoapp', [])
         };
 
         self.addTodo = function(){
+            if (!self.currentItemTitle){
+                return;
+            }
             self.todos.push({
                 todo_id: ++self.maxTodoId,
                 todo_title: self.currentItemTitle
