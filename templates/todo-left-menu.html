@@ -1,0 +1,12 @@
+<div class="list-menu">
+    <div class="input-group" id="search-group">
+        <input type="text" class="form-control search-style" id="search-input" placeholder="Search for...">
+        <span class="input-group-btn">
+            <button class="btn btn-default search-style" id="search-btn" type="button">Go!</button>
+        </span>
+    </div>
+    <ul class="multiple-list-container nav nav-stacked" ng-repeat="list in menu.lists">
+        <li role="presentation"><a href="#">{{ list.list_title }}</a></li>
+    </ul>
+    <button id="list-add-button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Create list</button>
+</div>

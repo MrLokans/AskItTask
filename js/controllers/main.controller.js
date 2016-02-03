@@ -24,6 +24,7 @@ angular.module('todoapp', [])
 
         self.addTodo = function(){
             if (!self.currentItemTitle){
+                console.log("Input is empty!");
                 return;
             }
             self.todos.push({
@@ -44,7 +45,6 @@ angular.module('todoapp', [])
                 }
             }
             return maxValue;
-
         };
 
     }])
@@ -59,4 +59,53 @@ angular.module('todoapp', [])
                 menu.lists = data.lists;
             });
 
-}]);
+    }])
+
+    .directive('todoList', function(){
+
+        return {
+            restrict: 'E',
+            controller: "TodoListController",
+            controllerAs: "todo",
+            templateUrl: 'templates/todo-list.html',
+
+            link: function(scope, element, attrs, ctrl) {
+                var taskAddBtn = element.find('#create-task-btn');
+                var taskInput = element.find('.todo-input-text');
+
+
+                taskAddBtn.on('click', function(){
+                    
+                    if(ctrl.currentItemTitle === '') {  
+                        element.find("#alertEmptyField").removeClass('hide');
+                        setTimeout(function(){
+                            element.find("#alertEmptyField").hide(250);
+                        }, 1500);
+                        // show method is called BEFORE the previous .hide() method. 
+                        element.find("#alertEmptyField").show(0);                 
+                    } else {
+                        ctrl.addTodo();
+                    }
+                });
+
+                taskAddBtn.on('keypress', function(e){
+                    console.log(e);
+                    if(e.keyCode === 13){
+                        ctrl.addTodo();
+                    } else {
+                        console.log(e);
+                    }
+                });
+            }
+        }
+    })
+    .directive('todoLeftMenu', function(){
+        return {
+            restrict: 'E',
+            controller: "MenuListController",
+            controllerAs: "menu",
+            templateUrl: 'templates/todo-left-menu.html'
+        }
+
+    });
+

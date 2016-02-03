@@ -8,49 +8,20 @@
 </head>
 <body ng-app="todoapp">
     <div id="content">
-        <div class="list-menu" ng-controller="MenuListController as menu">
-            <div class="input-group" id="search-group">
-                <input type="text" class="form-control search-style" id="search-input" placeholder="Search for...">
-                <span class="input-group-btn">
-                    <button class="btn btn-default search-style" id="search-btn" type="button">Go!</button>
-                </span>
-            </div>
-            <ul class="multiple-list-container nav nav-stacked" ng-repeat="list in menu.lists">
-                <li role="presentation"><a href="#">{{ list.list_title }}</a></li>
-            </ul>
-            <button id="list-add-button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Create list</button>
-        </div>
 
+        <todo-left-menu></todo-left-menu>
+        <todo-list></todo-list>
 
-        <div class="list-container" ng-controller="TodoListController as todo">        
-            <label for="message-text" class="control-label">Content of the task:</label>
-            <div class="input-group">
-                <input type="text" class="form-control todo-input-text" placeholder="What should be done?" autofocus ng-model="todo.currentItemTitle" ng-keypress="$event.keyCode === 13 && todo.addTodo()" required/>
-                <span class="input-group-btn">
-                    <button class="btn btn-default" id="create-task-btn" type="button" ng-click="todo.addTodo(); submitted=true" ng-keyup="submitted=false">Add new task</button>
-                </span>
-            </div> 
-
-            <div id="alertEmptyField" class="alert alert-warning hide fade in">
-                     To-do content can not be empty
-            </div>
-            <ul id="task-list" class="list-unstyled">
-                <li id="task-entry-{{ item.todo_id }}" class="task-entry" ng-repeat="item in todo.todos">
-                    <input type="checkbox" class="col-xs-2 col-md-1 col-sm-1">
-                    <div class="task-title col-xs-8 col-md-10 col-sm-10">{{ item.todo_title }}</div>
-                    <span class="glyphicon glyphicon-trash pull-right task-delete" ng-click="todo.removeTodo(item.todo_id)"></span>
-                </li>
-            </ul>                    
-        </div> 
-
-    </div>    
-
+    </div> 
+ 
     <script src="js/vendor/jquery.min.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
     <script src="js/vendor/angular.min.js"></script>
     <script src="js/vendor/angular-messages.min.js"></script>
-    <!--<script src="js/main.js"></script>-->
+    <!-- <script src="js/main.js"></script> -->
     <script src="js/app.js"></script>
     <script src="js/controllers/main.controller.js"></script>
+    <script src="js/directives/main.directive.js"></script>
+
 </body>
 </html>
