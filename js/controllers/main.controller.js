@@ -1,5 +1,5 @@
 angular.module('todoapp', [])
-    .controller('TodoListController', ["$http", function($http){
+    .controller('TodoListController', ["$http", "$scope", function($http, $scope){
         self = this;
 
         self.currentItemTitle = "";
@@ -24,6 +24,7 @@ angular.module('todoapp', [])
 
         self.addTodo = function(){
             if (!self.currentItemTitle){
+                console.log("Input is empty!");
                 return;
             }
             self.todos.push({
@@ -31,6 +32,7 @@ angular.module('todoapp', [])
                 todo_title: self.currentItemTitle
             });
             self.currentItemTitle = "";
+            $scope.$apply();
         };
 
         self.findMaximumTodoId = function(){
@@ -44,7 +46,6 @@ angular.module('todoapp', [])
                 }
             }
             return maxValue;
-
         };
 
     }])
@@ -59,4 +60,53 @@ angular.module('todoapp', [])
                 menu.lists = data.lists;
             });
 
-}]);
+    }])
+
+    .directive('todoList', function(){
+
+        return {
+            restrict: 'E',
+            controller: "TodoListController",
+            controllerAs: "todo",
+            templateUrl: 'templates/todo-list.html',
+
+            link: function(scope, element, attrs, ctrl) {
+                var taskAddBtn = element.find('#create-task-btn');
+                var taskInput = element.find('.todo-input-text');
+
+                var verifyToDo = function(){
+
+                    if(ctrl.currentItemTitle === '') {  
+                        element.find("#alertEmptyField").removeClass('hide');
+                        setTimeout(function(){
+                            element.find("#alertEmptyField").hide(250);
+                        }, 1500);
+                        // show method is called BEFORE the previous .hide() method. 
+                        element.find("#alertEmptyField").show(0);                 
+                    } else {
+                        ctrl.addTodo();
+                    }
+                };
+
+                taskAddBtn.on('click', function(){
+                    verifyToDo();   
+                });
+
+                taskInput.on('keydown', function(e){
+                    if(e.which === 13){
+                        verifyToDo();
+                    }
+                });
+            }
+        };
+    })
+    .directive('todoLeftMenu', function(){
+        return {
+            restrict: 'E',
+            controller: "MenuListController",
+            controllerAs: "menu",
+            templateUrl: 'templates/todo-left-menu.html'
+        };
+
+    });
+

@@ -20,13 +20,14 @@ class TestTasksApp(unittest.TestCase):
         self.server_args = [PYTHON_BINARY_NAME, "-m", "SimpleHTTPServer", TEST_SERVER_PORT]
 
         self.browser = webdriver.Chrome()
+        # self.browser = webdriver.Firefox()
 
         self.server_process = subprocess.Popen(self.server_args, cwd=BASE_PROJECT_DIR, stdout=FNULL, stderr=FNULL)
 
     def open_main_page(self):
         # self.browser.get('file://' + self.main_page)
         self.browser.get('localhost:{port}'.format(port=TEST_SERVER_PORT))
-        self.browser.implicitly_wait(2)
+        self.browser.implicitly_wait(1)
 
     def tearDown(self):
         self.browser.quit()
@@ -53,12 +54,14 @@ class TestTasksApp(unittest.TestCase):
         submit_task_btn = self.get_create_task_btn()
         text_input = self.browser.find_element_by_class_name('todo-input-text')
 
+        entries_number_before_submit = self.get_list_entry_count()
+
         self.add_list_entry(text_input, submit_task_btn, 'New Task 1')
         self.add_list_entry(text_input, submit_task_btn, 'New Task 2')
 
         list_entries = self.browser.find_elements_by_class_name('task-entry')
-        self.assertEqual(len(list_entries), 2)
-        self.assertEqual(list_entries[0].text, 'New Task 1')
+        self.assertEqual(len(list_entries), entries_number_before_submit + 2)
+        self.assertEqual(list_entries[entries_number_before_submit].text, 'New Task 1')
 
     def test_tasks_submited_on_ENTER_key(self):
         self.open_main_page()
