@@ -10,8 +10,13 @@
       with_items:
         - nginx
         - git
-        - node
+        - nodejs
         - npm
+      become: true
+      become_method: sudo
+
+    - name: Link nodejs executable to node executable
+      file: src=/usr/bin/nodejs dest=/usr/bin/node state=link
       become: true
       become_method: sudo
 
@@ -44,8 +49,25 @@
       become: true
       become_user: "{{ app_user }}"
 
-    - name: Install node dependencies
-      npm: path=/home/{{ app_user }}/app
+    - name: Install gulp globally
+      command: npm install -g gulp
+      args:
+        chdir: /home/{{ app_user }}/app
+      become: true
+      # become_user: "{{ app_user }}"
+      become_method: sudo
+
+    - name: Install gulp locally
+      command: npm install gulp
+      args:
+        chdir: /home/{{ app_user }}/app
+      become: true
+      become_user: "{{ app_user }}"
+
+    - name: Install npm deps
+      command: npm install
+      args:
+        chdir: /home/{{ app_user }}/app
       become: true
       become_user: "{{ app_user }}"
 
@@ -66,11 +88,15 @@
       command: gulp
       args:
         chdir: /home/{{ app_user }}/app
+      notify: restart nginx
+
       become: true
       become_user: "{{ app_user }}"
 
     - name: Copy nginx template file
       template: src=nginx.conf.j2 dest=/etc/nginx/sites-available/askittask
+      notify: restart nginx
+
       become: true
       become_method: sudo
 
@@ -89,3 +115,5 @@
   handlers:
     - name: restart nginx
       service: name=nginx state=reloaded
+      become: true
+      become_method: sudo
