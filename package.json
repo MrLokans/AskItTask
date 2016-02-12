@@ -24,7 +24,7 @@
     "url": "https://github.com/MrLokans/AskItTask/issues"
   },
   "homepage": "https://github.com/MrLokans/AskItTask#readme",
-  "devDependencies": {
+  "dependencies": {
     "gulp": "^3.9.0",
     "gulp-concat-css": "^2.2.0",
     "gulp-minify-css": "^1.2.3",
