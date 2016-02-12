@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "angular": "~1.4.9",
-    "angular-messages": "~1.4.9"
+    "angular-messages": "~1.4.9",
+    "ng-dialog": "^0.5.6"
   }
 }
