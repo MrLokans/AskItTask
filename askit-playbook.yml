@@ -1,0 +1,91 @@
+---
+- hosts: all
+  vars:
+    app_user: askittask
+    app_repo: https://github.com/MrLokans/AskItTask
+
+  tasks:
+    - name: Install git, nginx, node, npm, bower
+      apt: name={{ item }} state=installed update_cache=yes cache_valid_time=7200
+      with_items:
+        - nginx
+        - git
+        - node
+        - npm
+      become: true
+      become_method: sudo
+
+    - name: Create app user
+      user: name={{ app_user }} group=www-data
+      become: true
+      become_method: sudo
+
+    - name: Create app dir
+      file: name=/home/{{ app_user }}/app state=directory
+      become: true
+      become_user: "{{ app_user }}"
+
+    # - name: Copy app files
+    #   copy: src={{ item }} dest=/home/{{ app_user }}/app
+    #   with_items:
+    #     - index.html
+    #     - gulpfile.js
+    #     - bower.json
+    #     - package.json
+    #     - css
+    #     - img
+    #     - js
+    #     - templates
+    #   become: true
+    #   become_user: "{{ app_user }}"
+
+    - name: Checkout app repository
+      git: repo={{ app_repo }} dest=/home/{{ app_user }}/app
+      become: true
+      become_user: "{{ app_user }}"
+
+    - name: Install node dependencies
+      npm: path=/home/{{ app_user }}/app
+      become: true
+      become_user: "{{ app_user }}"
+
+    - name: Install bower
+      npm: name=bower global=true
+      become: true
+      become_method: sudo
+
+    - name: Install bower dependencies
+      command: bower install
+      args:
+        chdir: /home/{{ app_user }}/app
+      become: true
+      become_user: "{{ app_user }}"
+
+
+    - name: Build Front-End with gulp
+      command: gulp
+      args:
+        chdir: /home/{{ app_user }}/app
+      become: true
+      become_user: "{{ app_user }}"
+
+    - name: Copy nginx template file
+      template: src=nginx.conf.j2 dest=/etc/nginx/sites-available/askittask
+      become: true
+      become_method: sudo
+
+    - name: remove default config site
+      file: path=/etc/nginx/sites-enabled/default state=absent
+      notify: restart nginx
+      become: true
+      become_method: sudo
+
+    - name: activate site
+      file: src=/etc/nginx/sites-available/askittask dest=/etc/nginx/sites-enabled/askittask state=link
+      notify: restart nginx
+      become: true
+      become_method: sudo
+
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=reloaded
