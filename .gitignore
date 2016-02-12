@@ -4,3 +4,4 @@ css/vendor/**
 css/fonts/**
 js/vendor/**
 issues/**
+.vagrant/**
