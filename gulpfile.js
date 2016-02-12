@@ -10,6 +10,12 @@ gulp.task('copy', function() {
         .pipe(gulp.dest('js/vendor/'));
     gulp.src(['bower_components/angular-messages/angular-messages.min.js'])
         .pipe(gulp.dest('js/vendor/'));
+    gulp.src(['bower_components/ng-dialog/js/ngDialog.min.js'])
+        .pipe(gulp.dest('js/vendor/'));
+    gulp.src(['bower_components/ng-dialog/css/ngDialog.min.css'])
+        .pipe(gulp.dest('css/vendor/'));
+    gulp.src(['bower_components/ng-dialog/css/ngDialog-theme-default.css'])
+        .pipe(gulp.dest('css/vendor/'));
     gulp.src(['bower_components/bootstrap/dist/css/bootstrap.min.css'])
         .pipe(gulp.dest('css/vendor/'));
     gulp.src(['bower_components/bootstrap/dist/fonts/*.*'])
