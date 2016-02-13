@@ -108,5 +108,19 @@ angular.module('todoapp', [])
             templateUrl: 'templates/todo-left-menu.html'
         };
 
+    })
+
+    .controller('TodoItemController', function(){
+        ti = this;
+    })
+
+    .directive('todoItem', function(){
+        return {
+            restrict: 'E',
+            scope: { todo: '=', todos: "=" },
+            controller: "TodoItemController",
+            controllerAs: "ti",
+            templateUrl: 'templates/todo-list-item.html'
+        };
     });
 
