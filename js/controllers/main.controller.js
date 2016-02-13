@@ -1,4 +1,4 @@
-angular.module('todoapp', [])
+angular.module('todoapp', ['ngDialog'])
     .controller('TodoListController', ["$http", "$scope", function($http, $scope){
         self = this;
 
@@ -110,9 +110,17 @@ angular.module('todoapp', [])
 
     })
 
-    .controller('TodoItemController', function(){
-        ti = this;
-    })
+    .controller('TodoItemController', ['$scope', 'ngDialog', function($scope, ngDialog){
+        this.editTodo = function(){
+            console.log("Hello world!");
+            console.log($scope);
+            ngDialog.open({
+                scope: $scope,
+                template: 'templates/todo-edit.html'
+            });
+        };
+        // ti = this;
+    }])
 
     .directive('todoItem', function(){
         return {
