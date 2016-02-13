@@ -112,8 +112,6 @@ angular.module('todoapp', ['ngDialog'])
 
     .controller('TodoItemController', ['$scope', 'ngDialog', function($scope, ngDialog){
         this.editTodo = function(){
-            console.log("Hello world!");
-            console.log($scope);
             ngDialog.open({
                 scope: $scope,
                 template: 'templates/todo-edit.html'
