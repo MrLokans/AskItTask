@@ -6,6 +6,10 @@ gulp.task('copy', function() {
     // copy files
     gulp.src(['bower_components/bootstrap/dist/js/bootstrap.min.js', 'bower_components/jquery/dist/jquery.min.js'])
         .pipe(gulp.dest('js/vendor/'));
+    gulp.src(['bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'])
+        .pipe(gulp.dest('js/vendor/'));
+    gulp.src(['bower_components/moment/min/moment.min.js'])
+        .pipe(gulp.dest('js/vendor/'));
     gulp.src(['bower_components/angular/angular.min.js'])
         .pipe(gulp.dest('js/vendor/'));
     gulp.src(['bower_components/angular-messages/angular-messages.min.js'])
@@ -20,6 +24,8 @@ gulp.task('copy', function() {
         .pipe(gulp.dest('css/vendor/'));
     gulp.src(['bower_components/bootstrap/dist/fonts/*.*'])
         .pipe(gulp.dest('css/fonts/'));
+    gulp.src(['bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'])
+        .pipe(gulp.dest('css/vendor/'));
 });
 
 gulp.task('watch', function(){

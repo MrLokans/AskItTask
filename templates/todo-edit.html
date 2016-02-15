@@ -6,7 +6,15 @@
             <a href="#" class="tag-text">#{{ todo_tag.title }}</a>
         </div>
     </div>
-    <div class="todo-editor__date-completed">
-        {{ todo.todo_complete_date }}
+
+    <div class='input-group date' >
+        <input type='text' class="form-control" id='todo-datetimepicker'/>
     </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#todo-datetimepicker').datetimepicker({
+            });
+        });
+    </script>
+
 </div>
