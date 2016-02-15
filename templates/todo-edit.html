@@ -1,4 +1,12 @@
 <h1>Todo Editor!</h1>
-<div class="form-group">
+<div class="todo-editor form-group">
     <input type="text" class="form-control" ng-model="todo.todo_title">
+    <div class="todo-editor__tag-container">
+        <div class="tag-item" ng-repeat="todo_tag in todo.todo_tags">
+            <a href="#" class="tag-text">#{{ todo_tag.title }}</a>
+        </div>
+    </div>
+    <div class="todo-editor__date-completed">
+        {{ todo.todo_complete_date }}
+    </div>
 </div>
