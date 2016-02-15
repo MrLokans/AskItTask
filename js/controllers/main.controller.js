@@ -1,4 +1,4 @@
-angular.module('todoapp', [])
+angular.module('todoapp', ['ngDialog'])
     .controller('TodoListController', ["$http", "$scope", function($http, $scope){
         self = this;
 
@@ -108,5 +108,25 @@ angular.module('todoapp', [])
             templateUrl: 'templates/todo-left-menu.html'
         };
 
+    })
+
+    .controller('TodoItemController', ['$scope', 'ngDialog', function($scope, ngDialog){
+        this.editTodo = function(){
+            ngDialog.open({
+                scope: $scope,
+                template: 'templates/todo-edit.html'
+            });
+        };
+        // ti = this;
+    }])
+
+    .directive('todoItem', function(){
+        return {
+            restrict: 'E',
+            scope: { todo: '=', todos: "=" },
+            controller: "TodoItemController",
+            controllerAs: "ti",
+            templateUrl: 'templates/todo-list-item.html'
+        };
     });
 

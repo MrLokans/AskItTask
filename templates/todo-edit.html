@@ -1,0 +1,20 @@
+<h1>Todo Editor!</h1>
+<div class="todo-editor form-group">
+    <input type="text" class="form-control" ng-model="todo.todo_title">
+    <div class="todo-editor__tag-container">
+        <div class="tag-item" ng-repeat="todo_tag in todo.todo_tags">
+            <a href="#" class="tag-text">#{{ todo_tag.title }}</a>
+        </div>
+    </div>
+
+    <div class='input-group date' >
+        <input type='text' class="form-control" id='todo-datetimepicker'/>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#todo-datetimepicker').datetimepicker({
+            });
+        });
+    </script>
+
+</div>
