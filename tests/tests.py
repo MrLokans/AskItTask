@@ -14,8 +14,7 @@ from test_conf import BASE_PROJECT_DIR, TEST_SERVER_PORT
 class TestTasksApp(Test):
 
     def setUp(self):
-        self.main_page = os.path.join(BASE_PROJECT_DIR, "index.html")
-
+        self.main_page = os.path.abspath(os.path.join(BASE_PROJECT_DIR, "index.html"))
         self.browser = webdriver.Chrome()
         # self.browser = webdriver.Firefox()
 
