@@ -5,3 +5,4 @@ css/fonts/**
 js/vendor/**
 issues/**
 .vagrant/**
+**/*.pyc
