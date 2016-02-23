@@ -6,3 +6,5 @@ BASE_PROJECT_DIR = os.path.normpath(os.path.join(FILE_DIR, '..'))
 PYTHON_BINARY_NAME = "python" if os.name == "nt" else "python2"
 TEST_SERVER_PORT = "7149"
 FNULL = open(os.devnull, "w")
+
+MAX_TEST_TIMEOUT_MS = 10 * 1000

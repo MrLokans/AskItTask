@@ -3,12 +3,14 @@ import sys
 import time
 import subprocess
 
+import pytest
+
 import unittest
 
 from selenium import webdriver
 
 from base_test import Test
-from test_conf import BASE_PROJECT_DIR, TEST_SERVER_PORT
+from test_conf import BASE_PROJECT_DIR, TEST_SERVER_PORT, MAX_TEST_TIMEOUT_MS
 
 
 class TestTasksApp(Test):
@@ -45,10 +47,12 @@ class TestTasksApp(Test):
                 return li
         return None
 
+    @pytest.mark.timeout(MAX_TEST_TIMEOUT_MS)
     def test_page_has_proper_title(self):
         self.open_main_page()
         self.assertIn("AskItTask", self.browser.title)
 
+    @pytest.mark.timeout(MAX_TEST_TIMEOUT_MS)
     def test_tasks_correctly_submitted(self):
         self.open_main_page()
 
@@ -64,6 +68,8 @@ class TestTasksApp(Test):
         self.assertEqual(len(list_entries), entries_number_before_submit + 2)
         self.assertEqual(list_entries[entries_number_before_submit].text, 'New Task 1')
 
+
+    @pytest.mark.timeout(MAX_TEST_TIMEOUT_MS)
     def test_tasks_submited_on_ENTER_key(self):
         self.open_main_page()
 
@@ -75,6 +81,7 @@ class TestTasksApp(Test):
         entries_number_after_submit = self.get_list_entry_count()
         self.assertEqual(entries_number_after_submit, entries_number_before_submit + 1, msg="Element was not added on enter key press")
 
+    @pytest.mark.timeout(MAX_TEST_TIMEOUT_MS)
     def test_delete_tasks_correctly(self):
         self.open_main_page()
 
@@ -103,6 +110,7 @@ class TestTasksApp(Test):
         self.assertEqual(entries_number_after_submit, entries_number_before_submit + 3, msg="Element was not deleted.")
         self.assertEqual(new_todos_texts[entries_number_before_submit:], ['New Task 1', 'New Task 2', 'New Task 4'])
 
+    @pytest.mark.timeout(MAX_TEST_TIMEOUT_MS)
     def test_empty_task_not_submited(self):
         self.open_main_page()
 
@@ -119,6 +127,7 @@ class TestTasksApp(Test):
 
         self.assertEqual(len(list_entries), entries_count_before_submit, msg="Empty element added to the list.")
 
+    @pytest.mark.timeout(MAX_TEST_TIMEOUT_MS)
     def test_submitting_empty_TODO_by_clicking_button_shows_error(self):
         self.open_main_page()
 
@@ -129,6 +138,7 @@ class TestTasksApp(Test):
         alert_div = self.browser.find_element_by_id('alertEmptyField')
         self.assertIn("To-do content can not be empty", alert_div.text)
 
+    @pytest.mark.timeout(MAX_TEST_TIMEOUT_MS)
     def test_submitting_empty_TODO_by_pressing_ENTER_button_shows_error(self):
         self.open_main_page()
 
