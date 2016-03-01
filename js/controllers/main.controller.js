@@ -111,13 +111,19 @@ angular.module('todoapp', ['ngDialog', 'ui.bootstrap'])
     })
 
     .controller('TodoItemController', ['$scope', 'ngDialog', function($scope, ngDialog){
-        this.editTodo = function(){
+        todo = this;
+        todo.editTodo = function(){
             ngDialog.open({
                 scope: $scope,
                 template: 'templates/todo-edit.html'
             });
         };
-        // ti = this;
+
+        $scope.inlineOptions = {
+            // customClass: getDayClass,
+            minDate: new Date(),
+            showWeeks: true
+        };
     }])
 
     .directive('todoItem', function(){
