@@ -1,3 +1,6 @@
+/* used by ui-angular-bootstrap */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
 ul#task-list li.task-entry {
     margin-top: 1px;
     border: 1px solid #DCDCDC;

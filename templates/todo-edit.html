@@ -1,4 +1,4 @@
-<h1>Todo Editor!</h1>
+<h2 class="todo-editor__header">ToDo Editor</h2>
 <div class="todo-editor form-group">
     <input type="text" class="form-control" ng-model="todo.todo_title">
     <div class="todo-editor__tag-container">
@@ -7,14 +7,8 @@
         </div>
     </div>
 
-    <div class='input-group date' >
-        <input type='text' class="form-control" id='todo-datetimepicker'/>
+    <div class='input-group date'>
+        <pre>Complete until: <em>{{ todo.todo_complete_date | date:'fullDate' }}</em></pre>
+        <!-- <uib-datepicker ng-model="todo.todo_complete_date" class="well well-sm" datepicker-options="inlineOptions"></uib-datepicker> -->
     </div>
-    <script type="text/javascript">
-        $(function () {
-            $('#todo-datetimepicker').datetimepicker({
-            });
-        });
-    </script>
-
 </div>

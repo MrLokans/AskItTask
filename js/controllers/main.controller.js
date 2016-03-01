@@ -1,4 +1,4 @@
-angular.module('todoapp', ['ngDialog'])
+angular.module('todoapp', ['ngDialog', 'ui.bootstrap'])
     .controller('TodoListController', ["$http", "$scope", function($http, $scope){
         self = this;
 
