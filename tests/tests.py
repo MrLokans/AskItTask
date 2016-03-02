@@ -43,7 +43,7 @@ class TestTasksApp(Test):
         return len(self.get_list_entries())
 
     def get_list_element_with_text(self, search_text):
-        li_elems = self.get_list_entries
+        li_elems = self.get_list_entries()
 
         for li in li_elems:
             if search_text in li.find_element_by_class_name("task-title").text:

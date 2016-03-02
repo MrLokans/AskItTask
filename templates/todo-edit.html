@@ -1,6 +1,6 @@
 <h2 class="todo-editor__header">ToDo Editor</h2>
 <div class="todo-editor form-group">
-    <input type="text" class="form-control" ng-model="todo.todo_title">
+    <input type="text" class="form-control todo-editor__title-input" ng-model="todo.todo_title">
     <div class="todo-editor__tag-container">
         <div class="tag-item" ng-repeat="todo_tag in todo.todo_tags">
             <a href="#" class="tag-text">#{{ todo_tag.title }}</a>
