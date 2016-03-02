@@ -6,7 +6,7 @@ AskItTask is an open-source task-management tool built with Django, AngularJS an
 Run ```bower install``` and  ```gulp``` in command line to download and compile all front end dependencies.
 
 ## Testing
-To run test suite make sure you have Chrome webbrowser and chromedriver installed and run following commands:
+To run test suite make sure you have Python 2.7, Chrome webbrowser and chromedriver installed and run following commands:
 
 ```
 pip install -r python_deps/linux_test_requirements.txt
