@@ -1,6 +1,8 @@
 # General description
 AskItTask is an open-source task-management tool built with Django, AngularJS and good intentions.
 
+##  To try out:
+Run ```python3 -m "http.server"``` or ```python2 -m "SimpleHTTPServer"``` and visit localhost:8000. 
 
 ## Development setup
 Run ```bower install``` and  ```gulp``` in command line to download and compile all front end dependencies.
