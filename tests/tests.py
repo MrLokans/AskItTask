@@ -18,8 +18,8 @@ class TestTasksApp(Test):
     def setUp(self):
         self.main_page = os.path.abspath(os.path.join(BASE_PROJECT_DIR,
                                                       "index.html"))
-        self.browser = webdriver.Chrome()
-        # self.browser = webdriver.Firefox()
+        # self.browser = webdriver.Chrome()
+        self.browser = webdriver.Firefox()
 
     def open_main_page(self):
         self.browser.get('localhost:{port}'.format(port=TEST_SERVER_PORT))
